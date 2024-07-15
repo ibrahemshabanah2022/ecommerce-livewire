@@ -4,18 +4,16 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Products extends Component
 {
-    public $products;
-
-    public function mount()
-    {
-        $this->products = Product::all();
-    }
+    use WithPagination;
 
     public function render()
     {
-        return view('livewire.products');
+        $products = Product::paginate(30); // Adjust the number of items per page as needed
+
+        return view('livewire.products', ['products' => $products]);
     }
 }
