@@ -1,3 +1,14 @@
+<style>
+    .hover-container .btn-primary {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .hover-container:hover .btn-primary {
+        opacity: 1;
+    }
+</style>
+
 <div>
     <div class="super_container">
 
@@ -115,7 +126,7 @@
                                 <!-- Product Item -->
 
                                 @foreach ($products as $product)
-                                    <div class="product_item">
+                                    <div class="product_item hover-container">
                                         <div class="product_border"></div>
                                         <div
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
@@ -129,10 +140,14 @@
                                             </div>
                                         </div>
                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
+
                                         <ul class="product_marks">
                                             <li class="product_mark product_discount">-25%</li>
                                             <li class="product_mark product_new">new</li>
                                         </ul>
+                                        <button class="btn btn-primary"
+                                            style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);">Add
+                                            to Cart</button>
                                     </div>
                                 @endforeach
 

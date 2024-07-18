@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-ui-1.12.1.custom/jquery-ui.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_responsive.css') }}">
+
 </head>
 
 <body>
