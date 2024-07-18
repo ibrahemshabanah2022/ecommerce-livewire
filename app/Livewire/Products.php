@@ -10,10 +10,17 @@ class Products extends Component
 {
     use WithPagination;
 
+    public $perPage = 30;
+
+    public function loadMore()
+    {
+        $this->perPage += 30;
+    }
+
     public function render()
     {
-        $products = Product::paginate(30); // Adjust the number of items per page as needed
+        $products = Product::paginate($this->perPage); // Adjust the number of items per page as needed
 
-        return view('livewire.products', ['products' => $products]);
+        return view('livewire.products-component', ['products' => $products]);
     }
 }

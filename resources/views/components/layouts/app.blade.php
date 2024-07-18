@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @livewireStyles
 
     <title>{{ $title ?? 'Page Title' }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap4/bootstrap.min.css') }}">
@@ -17,8 +18,11 @@
 </head>
 
 <body>
+    @livewire('navbar')
+
     {{ $slot }}
 
+    @livewireScripts
 
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
