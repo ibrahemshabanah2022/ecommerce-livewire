@@ -135,21 +135,21 @@
                                         <div class="product_content">
                                             <div class="product_price">${{ $product->price }}</div>
                                             <div class="product_name">
-                                                <div><a href="#" tabindex="0">{{ $product->name }}</a>
-                                                </div>
+                                                <div><a href="#" tabindex="0">{{ $product->name }}</a></div>
                                             </div>
                                         </div>
                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
-
                                         <ul class="product_marks">
                                             <li class="product_mark product_discount">-25%</li>
                                             <li class="product_mark product_new">new</li>
                                         </ul>
-                                        <button class="btn btn-primary"
+                                        <button class="btn btn-primary add-to-cart-btn"
+                                            data-product-id="{{ $product->id }}"
                                             style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);">Add
                                             to Cart</button>
                                     </div>
                                 @endforeach
+
 
 
                             </div>
@@ -498,3 +498,53 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const productId = this.getAttribute("data-product-id");
+                const productName = this.closest(".product_item").querySelector(
+                    ".product_name a").textContent;
+                addToCart(productId, productName);
+            });
+        });
+
+        function addToCart(productId, productName) {
+            // Retrieve the current cart from the cookie
+            let cart = getCookie("cart");
+            cart = cart ? JSON.parse(cart) : [];
+
+            // Check if the product already exists in the cart
+            const productIndex = cart.findIndex(product => product.id == productId);
+            if (productIndex === -1) {
+                // If the product doesn't exist, add it to the cart
+                cart.push({
+                    id: productId,
+                    quantity: 1
+                });
+                // Save the updated cart back to the cookie
+                setCookie("cart", JSON.stringify(cart), 7);
+                // Display success alert
+                alert(`Product "${productName}" has been added to the cart successfully!`);
+            } else {
+                // If the product already exists, display an alert
+                alert(`Product "${productName}" is already in the cart!`);
+            }
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+    });
+</script>
