@@ -18,7 +18,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-ui-1.12.1.custom/jquery-ui.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_responsive.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap4/bootstrap.min.css') }}">
+    <link href="{{ asset('plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet"
+        type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
 </head>
 
 <body>

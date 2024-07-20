@@ -3,6 +3,7 @@
 use App\Livewire\Products;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Cart;
 
 // Route::view('/', 'welcome');
 
@@ -23,6 +24,7 @@ Route::get('/', Products::class)
     ->name('products_page');
 
 
+Route::get('/cart', Cart::class)->name('cart');
 
 
 require __DIR__ . '/auth.php';
