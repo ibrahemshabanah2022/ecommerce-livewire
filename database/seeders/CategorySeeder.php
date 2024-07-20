@@ -9,24 +9,11 @@ class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
-        $electronicCategories = [
-            'Laptops',
-            'Smartphones',
-            'Cameras',
-            'Headphones',
-            'Wearable Technology',
-            'Smart Home Devices',
-            'Gaming Consoles',
-            'Televisions'
-        ];
-
-        foreach ($electronicCategories as $category) {
-            Category::factory()->create([
-                'name' => $category,
-            ]);
-        }
+        Category::factory()->count(10)->create();
     }
 }

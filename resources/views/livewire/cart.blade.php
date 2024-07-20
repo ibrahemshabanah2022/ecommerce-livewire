@@ -40,8 +40,7 @@
                                                 ${{ $product->price * $item['quantity'] }}
                                             </td>
                                             <td class="cart_item_remove" style="text-align: center; border: none;">
-                                                <button class="remove-button btn btn-danger"><i
-                                                        class="bi bi-x-lg"></i></button>
+                                                <button class="remove-button btn btn-danger">Remove</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -66,7 +65,6 @@
                         </div>
 
                         <div class="cart_buttons">
-                            <button type="button" class="button cart_button_clear">Clear Cart</button>
                             <button type="button" class="button cart_button_checkout">Proceed to Checkout</button>
                         </div>
                     </div>

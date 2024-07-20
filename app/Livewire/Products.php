@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Category;
 use Livewire\WithPagination;
 
 class Products extends Component
@@ -20,7 +21,13 @@ class Products extends Component
     public function render()
     {
         $products = Product::paginate($this->perPage); // Adjust the number of items per page as needed
+        $categories = Category::all(); // Fetch all categories
 
-        return view('livewire.products-component', ['products' => $products]);
+        return view('livewire.products-component', [
+            'products' => $products,
+            'categories' => $categories,
+
+
+        ]);
     }
 }
