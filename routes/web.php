@@ -4,6 +4,7 @@ use App\Livewire\Products;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Cart;
+use App\Livewire\ProductsByCategory;
 
 // Route::view('/', 'welcome');
 
@@ -26,5 +27,7 @@ Route::get('/', Products::class)
 
 Route::get('/cart', Cart::class)->name('cart');
 
+
+Route::get('/category/{id}', ProductsByCategory::class)->name('category.show');
 
 require __DIR__ . '/auth.php';

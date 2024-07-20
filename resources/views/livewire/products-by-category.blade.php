@@ -1,3 +1,25 @@
+{{-- <div>
+    <h1>Products in {{ $category->name }}</h1>
+
+    @if ($products->count())
+        <ul>
+            @foreach ($products as $product)
+                <li>
+                    <strong>{{ $product->name }}</strong><br>
+                    {{ $product->description }}<br>
+                    ${{ $product->price }}
+                </li>
+            @endforeach
+        </ul>
+        @if ($products->hasMorePages())
+            <button wire:click="loadMore">Load More</button>
+        @endif
+    @else
+        <p>No products found in this category.</p>
+    @endif
+</div> --}}
+@livewireStyles
+
 <style>
     .hover-container .btn-primary {
         opacity: 0;
@@ -22,7 +44,7 @@
             </div>
             <div class="home_overlay"></div>
             <div class="home_content d-flex flex-column align-items-center justify-content-center">
-                <h2 class="home_title">All Products</h2>
+                <h2 class="home_title">Products in {{ $category->name }}</h2>
             </div>
         </div>
 
@@ -124,32 +146,35 @@
 
 
                                 <!-- Product Item -->
+                                @if ($products->count())
 
-                                @foreach ($products as $product)
-                                    <div class="product_item hover-container">
-                                        <div class="product_border"></div>
-                                        <div
-                                            class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="images/featured_2.png" alt="">
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="product_price">${{ $product->price }}</div>
-                                            <div class="product_name">
-                                                <div><a href="#" tabindex="0">{{ $product->name }}</a></div>
+                                    @foreach ($products as $product)
+                                        <div class="product_item hover-container">
+                                            <div class="product_border"></div>
+                                            <div
+                                                class="product_image d-flex flex-column align-items-center justify-content-center">
+                                                <img src="{{ asset('images/featured_2.png') }} " alt="">
                                             </div>
+                                            <div class="product_content">
+                                                <div class="product_price">${{ $product->price }}</div>
+                                                <div class="product_name">
+                                                    <div><a href="#" tabindex="0">{{ $product->name }}</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                            <ul class="product_marks">
+                                                <li class="product_mark product_discount">-25%</li>
+                                                <li class="product_mark product_new">new</li>
+                                            </ul>
+                                            <button class="btn btn-primary add-to-cart-btn"
+                                                data-product-id="{{ $product->id }}"
+                                                style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);">Add
+                                                to Cart</button>
                                         </div>
-                                        <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                        <ul class="product_marks">
-                                            <li class="product_mark product_discount">-25%</li>
-                                            <li class="product_mark product_new">new</li>
-                                        </ul>
-                                        <button class="btn btn-primary add-to-cart-btn"
-                                            data-product-id="{{ $product->id }}"
-                                            style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);">Add
-                                            to Cart</button>
-                                    </div>
-                                @endforeach
-
+                                    @endforeach
+                                @else
+                                    <p>No products found in this category.</p>
+                                @endif
 
 
                             </div>
@@ -498,6 +523,8 @@
         </div>
     </div>
 </div>
+@livewireScripts
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");

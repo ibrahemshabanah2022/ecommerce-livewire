@@ -2,5 +2,4 @@
 
     @livewire('products-component')
 
-
 </x-layouts.app>
