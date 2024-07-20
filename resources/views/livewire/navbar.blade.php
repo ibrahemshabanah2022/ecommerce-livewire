@@ -83,24 +83,9 @@
                     <div class="header_search">
                         <div class="header_search_content">
                             <div class="header_search_form_container">
-                                <form action="#" class="header_search_form clearfix">
-                                    <input type="search" required="required" class="header_search_input"
-                                        placeholder="Search for products...">
-                                    <div class="">
-                                        <div class="custom_dropdown_list">
+                                <livewire:product-search />
 
-                                            <span class="custom_dropdown_placeholder clc">All
-                                                Categories</span>
-                                            <i class="fas fa-chevron-down"></i>
-                                            <ul class="custom_list clc">
-                                                <li><a class="clc" href="/">All Categories</a></li>
 
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="header_search_button trans_300" value="Submit"><img
-                                            src="images/search.png" alt=""></button>
-                                </form>
                             </div>
                         </div>
                     </div>
