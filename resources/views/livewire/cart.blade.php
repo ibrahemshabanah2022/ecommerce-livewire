@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="cart_buttons">
-                            <button type="button" class="button cart_button_checkout">Proceed to Checkout</button>
+                            @livewire('checkout')
                         </div>
                     </div>
                 </div>
