@@ -4,8 +4,16 @@
             {{ session('message') }}
         </div>
     @endif
+
+    <form action="{{ route('checkout') }}" method="POST">
+        @csrf
+        <button>Checkout</button>
+    </form>
+
+
+
     <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout" type="button"
-        class="button cart_button_checkout">Proceed to Checkout</button>
+        class="button cart_button_checkout">Place An Order</button>
 
     {{-- <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout">Proceed to Checkout</button> --}}
 </div>
