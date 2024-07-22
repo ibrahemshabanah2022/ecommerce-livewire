@@ -70,7 +70,6 @@
 
                         <div class="shop_content">
                             <div class="shop_bar clearfix">
-                                <div class="shop_product_count"><span>186</span> products found</div>
                                 <div class="shop_sorting">
                                     <span>Sort by:</span>
                                     <ul>
@@ -119,10 +118,14 @@
                                             <li class="product_mark product_discount">-25%</li>
                                             <li class="product_mark product_new">new</li>
                                         </ul>
-                                        <button class="btn btn-primary add-to-cart-btn"
+                                        <button class="btn btn-primary  add-to-cart"
                                             data-product-id="{{ $product->id }}"
                                             style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);">Add
                                             to Cart</button>
+                                        {{-- <button class="decrease-cart-count">Decrease Cart Count</button> --}}
+
+                                        {{-- <button class="add-to-cart" data-product-id="1">Add to Cart</button> --}}
+
                                     </div>
                                 @endforeach
 
@@ -474,9 +477,9 @@
         </div>
     </div>
 </div>
-<script>
+{{-- <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
 
         addToCartButtons.forEach(button => {
             button.addEventListener("click", function() {
@@ -525,4 +528,5 @@
 
 
     });
-</script>
+</script> --}}
+<script src="{{ asset('js/cart-count.js') }}"></script>

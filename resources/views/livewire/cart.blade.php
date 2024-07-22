@@ -40,7 +40,8 @@
                                                 ${{ $product->price * $item['quantity'] }}
                                             </td>
                                             <td class="cart_item_remove" style="text-align: center; border: none;">
-                                                <button class="remove-button btn btn-danger">Remove</button>
+                                                <button
+                                                    class="remove-button btn btn-danger decrease-cart-count">Remove</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -303,3 +304,4 @@
         updateTotals();
     });
 </script>
+<script src="{{ asset('js/cart-count.js') }}"></script>
