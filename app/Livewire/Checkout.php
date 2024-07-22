@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Checkout extends Component
 {
+    public $showCheckoutButton = false;
+
     public function proceedToCheckout($cartItems)
     {
         // Get the authenticated user ID
@@ -43,11 +45,10 @@ class Checkout extends Component
             }
         }
 
-        // Optionally, you can clear the cart cookie after saving
-        // setcookie('cart', '', time() - 3600, '/');
 
-        // Provide feedback to the user
-        session()->flash('message', 'Checkout completed successfully!');
+        $this->showCheckoutButton = true;
+
+        session()->flash('message', 'Your Order Has Been Placed successfully!');
     }
 
     public function render()

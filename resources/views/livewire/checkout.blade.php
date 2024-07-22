@@ -5,16 +5,19 @@
         </div>
     @endif
 
-    <form action="{{ route('checkout') }}" method="POST">
-        @csrf
-        <button>Checkout</button>
-    </form>
+
+    @if ($showCheckoutButton)
+        <form action="{{ route('checkout') }}" method="POST">
+            @csrf
+            <button class="btn btn-danger">Checkout</button>
+        </form>
+    @endif
 
 
-
-    <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout" type="button"
-        class="button cart_button_checkout">Place An Order</button>
-
+    @if (!$showCheckoutButton)
+        <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout" type="button"
+            class="button cart_button_checkout">Place An Order</button>
+    @endif
     {{-- <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout">Proceed to Checkout</button> --}}
 </div>
 

@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use Illuminate\Support\Facades\Cookie;
+
+
 // require 'vendor/autoload.php';
 
 
@@ -41,7 +44,7 @@ class CheckoutController extends Controller
                     'product_data' => [
                         'name' => $cartProduct->product->name,
                     ],
-                    'unit_amount' =>  intval($cartProduct->product->price),
+                    'unit_amount' =>  intval($cartProduct->product->price * 100),
                 ],
                 'quantity' => $cartProduct->quantity,
             ];
@@ -112,11 +115,12 @@ class CheckoutController extends Controller
 
         $cartId = $cart->id;
         // dd($cartId);
-        $cart->cartproducts()->where('cart_id', $cartId)->delete();
+        $cart->cartItems()->where('cart_id', $cartId)->delete();
 
 
+        Cookie::queue(Cookie::forget('cart'));
 
 
-        return view('product.checkout-success');
+        return view('checkout-success');
     }
 }
