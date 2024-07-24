@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DropdownController;
+use App\Http\Controllers\subnitcheckoutController;
 
 // Route::view('/', 'welcome');
 
@@ -48,7 +49,12 @@ Route::get('/cancel', [CheckoutController::class, 'cancel'])->name('checkout.can
 
 
 
-Route::get('dropdown', [DropdownController::class, 'index']);
-Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
-Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
+Route::get('/dropdown', [DropdownController::class, 'index'])->name('dropdown');
+Route::post('/save-user-order-info', [DropdownController::class, 'saveUserOrderInfo']);
+Route::post('/fetch-states', [DropdownController::class, 'fetchState']);
+Route::post('/fetch-cities', [DropdownController::class, 'fetchCity']);
+
+Route::get('/subnitcheckout', [subnitcheckoutController::class, 'subnitcheckout'])->name('subnitcheckout');
+
+
 require __DIR__ . '/auth.php';

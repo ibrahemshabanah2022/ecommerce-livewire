@@ -1,105 +1,113 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="csrf-token" content="content">
+    <title>Laravel Dynamic Dependent Dropdown</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel AJAX Dependent Country State City Dropdown Example - ItSolutionStuff.com</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="alert alert-primary mb-4 text-center">
-                    <h4>Laravel AJAX Dependent Country State City Dropdown Example ItSolutionStuff.com</h4>
-                </div>
-                <form>
-                    <div class="form-group mb-3">
-                        <select id="country-dropdown" class="form-control">
-                            <option value="">-- Select Country --</option>
-                            @foreach ($countries as $data)
-                                <option value="{{ $data->id }}">
-                                    {{ $data->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
-                        <select id="state-dropdown" class="form-control">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="city-dropdown" class="form-control">
-                        </select>
-                    </div>
-                </form>
+    <div class="container mt-5">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
-        </div>
+        @endif
+        <h1>Add Shipping Information</h1>
+        <form action="{{ url('/save-user-order-info') }}" method="POST">
+            @csrf
+
+
+
+            <div class="form-group">
+                <label>Country:</label>
+                <select name="country_id" id="country_id" class="form-control" required>
+                    <option value="">Select Country</option>
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>State:</label>
+                <select name="state_id" id="state_id" class="form-control" required>
+                    <option value="">Select State</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>City:</label>
+                <select name="city_id" id="city_id" class="form-control" required>
+                    <option value="">Select City</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="text" name="phone_number" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>Address Line:</label>
+                <input type="text" name="address_line" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>User Name:</label>
+                <input type="text" name="user_name" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
         $(document).ready(function() {
-
-            /*------------------------------------------
-            --------------------------------------------
-            Country Dropdown Change Event
-            --------------------------------------------
-            --------------------------------------------*/
-            $('#country-dropdown').on('change', function() {
-                var idCountry = this.value;
-                $("#state-dropdown").html('');
+            $('#country_id').on('change', function() {
+                var countryID = this.value;
+                $("#state_id").html('');
                 $.ajax({
-                    url: "{{ url('api/fetch-states') }}",
+                    url: "{{ url('fetch-states') }}",
                     type: "POST",
                     data: {
-                        country_id: idCountry,
+                        country_id: countryID,
                         _token: '{{ csrf_token() }}'
                     },
                     dataType: 'json',
                     success: function(result) {
-                        $('#state-dropdown').html(
-                            '<option value="">-- Select State --</option>');
+                        $('#state_id').html('<option value="">Select State</option>');
                         $.each(result.states, function(key, value) {
-                            $("#state-dropdown").append('<option value="' + value
-                                .id + '">' + value.name + '</option>');
+                            $("#state_id").append('<option value="' + value.id + '">' +
+                                value.name + '</option>');
                         });
-                        $('#city-dropdown').html('<option value="">-- Select City --</option>');
+                        $('#city_id').html('<option value="">Select City</option>');
                     }
                 });
             });
 
-            /*------------------------------------------
-            --------------------------------------------
-            State Dropdown Change Event
-            --------------------------------------------
-            --------------------------------------------*/
-            $('#state-dropdown').on('change', function() {
-                var idState = this.value;
-                $("#city-dropdown").html('');
+            $('#state_id').on('change', function() {
+                var stateID = this.value;
+                $("#city_id").html('');
                 $.ajax({
-                    url: "{{ url('api/fetch-cities') }}",
+                    url: "{{ url('fetch-cities') }}",
                     type: "POST",
                     data: {
-                        state_id: idState,
+                        state_id: stateID,
                         _token: '{{ csrf_token() }}'
                     },
                     dataType: 'json',
-                    success: function(res) {
-                        $('#city-dropdown').html('<option value="">-- Select City --</option>');
-                        $.each(res.cities, function(key, value) {
-                            $("#city-dropdown").append('<option value="' + value
-                                .id + '">' + value.name + '</option>');
+                    success: function(result) {
+                        $('#city_id').html('<option value="">Select City</option>');
+                        $.each(result.cities, function(key, value) {
+                            $("#city_id").append('<option value="' + value.id + '">' +
+                                value.name + '</option>');
                         });
                     }
                 });
             });
-
         });
     </script>
 </body>

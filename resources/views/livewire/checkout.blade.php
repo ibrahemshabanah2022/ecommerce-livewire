@@ -15,11 +15,13 @@
 
 
     @if (!$showCheckoutButton)
-        <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout" type="button"
-            class="button cart_button_checkout">Place An Order</button>
+        <a href="{{ route('dropdown') }}" id="proceed-to-checkout" type="button" class="button cart_button_checkout">Place
+            An Order</a>
     @endif
 
-    <livewire:countries-component />
+    {{-- <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout" type="button"
+    class="button cart_button_checkout">Place An Order</button> --}}
+
 
     {{-- <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout">Proceed to Checkout</button> --}}
 </div>

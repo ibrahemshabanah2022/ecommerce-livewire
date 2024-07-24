@@ -85,7 +85,7 @@ class CheckoutController extends Controller
 
 
         // 1. Retrieve or Create the Order 
-        $orderId = session('orderid'); // Get potential order ID from the session
+        $orderId = session('order_id'); // Get potential order ID from the session
         $order = Order::find($orderId);
 
         // dd($orderId);
