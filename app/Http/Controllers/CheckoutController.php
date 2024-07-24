@@ -65,22 +65,36 @@ class CheckoutController extends Controller
             'submit_type' => 'pay',
         ]);
 
-        $order = new Order();
-        $order->status = 'unpaid';
-        $order->total = $totalprice;
-        $order->user_id =  $user_id;
-        $order->session_id =   $checkout_session->id;
-        $order->save();
-        // Save the products that the user ordered
-        foreach ($cartProducts as $cartProduct) {
-            DB::table('order_items')->insert([
-                'order_id' => $order->id,
-                'Product_id' => $cartProduct->product->id,
-                'price' => $cartProduct->product->price,
+        // $order = new Order();
+        // $order->status = 'unpaid';
+        // $order->total = $totalprice;
+        // $order->user_id =  $user_id;
+        // $order->session_id =   $checkout_session->id;
+        // $order->save();
+        // // Save the products that the user ordered
+        // foreach ($cartProducts as $cartProduct) {
+        //     DB::table('order_items')->insert([
+        //         'order_id' => $order->id,
+        //         'Product_id' => $cartProduct->product->id,
+        //         'price' => $cartProduct->product->price,
 
-                'quantity' => $cartProduct->quantity,
-            ]);
-        }
+        //         'quantity' => $cartProduct->quantity,
+        //     ]);
+
+        // }
+
+
+        // 1. Retrieve or Create the Order 
+        $orderId = session('orderid'); // Get potential order ID from the session
+        $order = Order::find($orderId);
+
+        // dd($orderId);
+        // 2. Store the Payment Gateway Session ID (Crucial!)
+        $order->session_id = $checkout_session->id;
+        $order->save();
+
+
+
         return redirect($checkout_session->url);
 
         // return response()->json([

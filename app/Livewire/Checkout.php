@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 
-use Livewire\Component;
 use App\Models\Cart;
+use App\Models\Order;
+use Livewire\Component;
 use App\Models\CartItem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class Checkout extends Component
@@ -47,6 +49,46 @@ class Checkout extends Component
 
 
         $this->showCheckoutButton = true;
+        ///////////////////
+
+        $user = Auth::user();
+
+        // Get the cart for the user
+        $cart = $user->cart;
+
+        // Get the cart product 
+        $cartProducts = $cart->cartItems()->get();
+        // dd($cartProducts);
+        // $products = Product::whereIn('id', $cartProducts->pluck('product_id'))->get();
+
+        $totalprice = 0;
+        foreach ($cartProducts as $cartProduct) {
+            $totalprice += $cartProduct->quantity * $cartProduct->product->price;
+        }
+
+        $user_id = $user->id;
+
+
+        $order = new Order();
+        $order->status = 'unpaid';
+        $order->total = $totalprice;
+        $order->user_id =  $user_id;
+        $order->save();
+        // Save the products that the user ordered
+        foreach ($cartProducts as $cartProduct) {
+            DB::table('order_items')->insert([
+                'order_id' => $order->id,
+                'Product_id' => $cartProduct->product->id,
+                'price' => $cartProduct->product->price,
+
+                'quantity' => $cartProduct->quantity,
+            ]);
+        };
+
+        // return response()->json([
+        //     'url' =>  $checkout_session->url
+        // ]);
+        session(['orderid' => $order->id]);
 
         session()->flash('message', 'Your Order Has Been Placed successfully!');
     }

@@ -18,6 +18,7 @@
         <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout" type="button"
             class="button cart_button_checkout">Place An Order</button>
     @endif
+
     <livewire:countries-component />
 
     {{-- <button wire:click="proceedToCheckout(getCartItems())" id="proceed-to-checkout">Proceed to Checkout</button> --}}
