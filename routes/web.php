@@ -8,6 +8,8 @@ use App\Livewire\ProductsByCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DropdownController;
+
 // Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
@@ -40,4 +42,13 @@ Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkou
 
 Route::get('/success', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+
+
+
+
+
+
+Route::get('dropdown', [DropdownController::class, 'index']);
+Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
+Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
 require __DIR__ . '/auth.php';
