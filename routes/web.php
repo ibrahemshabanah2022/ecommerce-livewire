@@ -4,6 +4,7 @@ use App\Livewire\Cart;
 use App\Livewire\Products;
 use App\Livewire\ProductSearch;
 use App\Livewire\SearchResults;
+use App\Livewire\WishlistProducts;
 use App\Livewire\ProductsByCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,10 @@ Route::post('/fetch-states', [DropdownController::class, 'fetchState']);
 Route::post('/fetch-cities', [DropdownController::class, 'fetchCity']);
 
 Route::get('/subnitcheckout', [subnitcheckoutController::class, 'subnitcheckout'])->name('subnitcheckout');
+
+Route::get('/my-wishlist', WishlistProducts::class)->name('my-wishlist');
+// Route::delete('/wishlist/{product}', [WishlistProducts::class, 'destroy'])->name('wishlist.destroy');
+Route::delete('/wishlist/{product}', [WishlistProducts::class, 'destroy'])->name('wishlist.destroy');
 
 
 require __DIR__ . '/auth.php';

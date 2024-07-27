@@ -1,26 +1,13 @@
-{{-- <div>
-    <h1>Products in {{ $category->name }}</h1>
+{{-- <style>
+    .hover-container .btn-primary {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
 
-    @if ($products->count())
-        <ul>
-            @foreach ($products as $product)
-                <li>
-                    <strong>{{ $product->name }}</strong><br>
-                    {{ $product->description }}<br>
-                    ${{ $product->price }}
-                </li>
-            @endforeach
-        </ul>
-        @if ($products->hasMorePages())
-            <button wire:click="loadMore">Load More</button>
-        @endif
-    @else
-        <p>No Added to cart in this category.</p>
-    @endif
-</div> --}}
-@livewireStyles
-
-
+    .hover-container:hover .btn-primary {
+        opacity: 1;
+    }
+</style> --}}
 
 <div>
     <div class="super_container">
@@ -31,11 +18,11 @@
 
         <div class="home">
             <div class="home_background parallax-window" data-parallax="scroll"
-                data-image-src="{{ asset('images/shop_background.jpg') }}">
+                data-image-src="images/shop_background.jpg">
             </div>
             <div class="home_overlay"></div>
             <div class="home_content d-flex flex-column align-items-center justify-content-center">
-                <h2 class="home_title">Products in {{ $category->name }}</h2>
+                <h2 class="home_title">My Wishlist</h2>
             </div>
         </div>
 
@@ -51,14 +38,14 @@
                             <div class="sidebar_section">
                                 <div class="sidebar_title">Categories</div>
 
-                                @foreach ($categories as $category)
+                                {{-- @foreach ($categories as $category)
                                     <ul class="sidebar_categories">
 
                                         <li><a
                                                 href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
                                         </li>
                                     </ul>
-                                @endforeach
+                                @endforeach --}}
 
 
                             </div>
@@ -112,14 +99,16 @@
 
 
                                 <!-- Product Item -->
-                                @if ($products->count())
 
-                                    @foreach ($products as $product)
+                                @if ($wishlistProducts->isEmpty())
+                                    <p>Your wishlist is empty.</p>
+                                @else
+                                    @foreach ($wishlistProducts as $product)
                                         <div class="product_item hover-container">
                                             <div class="product_border"></div>
                                             <div
                                                 class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <img src="{{ asset('images/view_1.jpg') }}" alt="">
+                                                <img src="images/featured_2.png" alt="">
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price">${{ $product->price }}</div>
@@ -139,7 +128,13 @@
                                                         <i class="fas fa-shopping-cart"></i>
                                                     </button>
 
-                                                    <livewire:add-to-wishlist :product="$product" />
+                                                    {{-- <livewire:add-to-wishlist :product="$product" /> --}}
+                                                    {{-- <button class="btn btn-danger"
+                                                        wire:click="removeWishlistProduct({{ $product->id }})">Remove</button> --}}
+
+                                                    <button class="remove-product btn btn-danger"
+                                                        data-product-id="{{ $product->id }}">Remove</button>
+
                                                 </div>
 
                                             </div>
@@ -150,22 +145,19 @@
 
                                         </div>
                                     @endforeach
-                                @else
-                                    <p>No Added to cart in this category.</p>
                                 @endif
 
 
-                            </div>
-                            {{-- @if ($products->hasMorePages())
-                                <button wire:click="loadMore" class="btn btn-primary">Load More</button>
-                            @endif --}}
-                            <!-- Shop Page Navigation -->
 
-                            <div class="mt-4">
+
+                            </div>
+
+
+                            {{-- <div class="mt-4">
                                 <nav aria-label="Page navigation">
                                     {{ $products->links('pagination::bootstrap-5') }}
                                 </nav>
-                            </div>
+                            </div> --}}
 
                         </div>
 
@@ -198,8 +190,7 @@
                                 <div class="owl-item">
                                     <div
                                         class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="viewed_image"><img src="{{ asset('images/view_1.jpg') }}"
-                                                alt="">
+                                        <div class="viewed_image"><img src="images/view_1.jpg" alt="">
                                         </div>
                                         <div class="viewed_content text-center">
                                             <div class="viewed_price">$225<span>$300</span></div>
@@ -502,57 +493,50 @@
         </div>
     </div>
 </div>
-@livewireScripts
 
+<script src="{{ asset('js/cart-count.js') }}"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all remove buttons
+        const removeButtons = document.querySelectorAll('.remove-product');
 
-        addToCartButtons.forEach(button => {
-            button.addEventListener("click", function() {
-                const productId = this.getAttribute("data-product-id");
-                const productName = this.closest(".product_item").querySelector(
-                    ".product_name a").textContent;
-                addToCart(productId, productName);
+        // Add click event listener to each remove button
+        removeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Get the parent product item
+                const productItem = button.closest('.product_item');
+
+                // Remove the product item from the DOM
+                if (productItem) {
+                    productItem.remove();
+                }
             });
         });
-
-        function addToCart(productId, productName) {
-            // Retrieve the current cart from the cookie
-            let cart = getCookie("cart");
-            cart = cart ? JSON.parse(cart) : [];
-
-            // Check if the product already exists in the cart
-            const productIndex = cart.findIndex(product => product.id == productId);
-            if (productIndex === -1) {
-                // If the product doesn't exist, add it to the cart
-                cart.push({
-                    id: productId,
-                    quantity: 1
-                });
-                // Save the updated cart back to the cookie
-                setCookie("cart", JSON.stringify(cart), 7);
-                // Display success alert
-                alert(`Product "${productName}" has been added to the cart successfully!`);
-            } else {
-                // If the product already exists, display an alert
-                alert(`Product "${productName}" is already in the cart!`);
-            }
-        }
-
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(";").shift();
-        }
-
-        function setCookie(name, value, days) {
-            const d = new Date();
-            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + d.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }
-
-
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.remove-product').click(function() {
+            var productId = $(this).data('product-id');
+            var token = '{{ csrf_token() }}';
+            $.ajax({
+                url: '/wishlist/' + productId,
+                type: 'DELETE',
+                data: {
+                    _token: token
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('#product-' + productId).remove();
+                    }
+                },
+                error: function(xhr) {
+                    alert(
+                        'An error occurred while removing the product from the wishlist.'
+                    );
+                }
+            });
+        });
     });
 </script>
