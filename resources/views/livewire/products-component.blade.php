@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
     .hover-container .btn-primary {
         opacity: 0;
         transition: opacity 0.3s;
@@ -7,7 +7,7 @@
     .hover-container:hover .btn-primary {
         opacity: 1;
     }
-</style>
+</style> --}}
 
 <div>
     <div class="super_container">
@@ -113,15 +113,23 @@
                                                 <div><a href="#" tabindex="0">{{ $product->name }}</a></div>
                                             </div>
                                         </div>
-                                        <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                        {{-- <div class="product_fav"><i class="fas fa-heart"></i></div> --}}
                                         <ul class="product_marks">
                                             <li class="product_mark product_discount">-25%</li>
                                             <li class="product_mark product_new">new</li>
                                         </ul>
-                                        <button class="btn btn-primary  add-to-cart"
-                                            data-product-id="{{ $product->id }}"
-                                            style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);">Add
-                                            to Cart</button>
+                                        <div>
+                                            <div class="d-flex align-items-center">
+                                                <button class="btn btn-primary add-to-cart me-2"
+                                                    data-product-id="{{ $product->id }}">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </button>
+
+                                                <livewire:add-to-wishlist :product="$product" />
+                                            </div>
+
+                                        </div>
+
                                         {{-- <button class="decrease-cart-count">Decrease Cart Count</button> --}}
 
                                         {{-- <button class="add-to-cart" data-product-id="1">Add to Cart</button> --}}

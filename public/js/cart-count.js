@@ -70,7 +70,7 @@ function addToCart(product, button) {
         updateCartCount();
 
         // Change button text and disable it
-        button.textContent = "Product already in cart";
+        // button.textContent = "Added to cart";
         button.disabled = true;
     }
 }
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".add-to-cart").forEach((button) => {
         const productId = parseInt(button.getAttribute("data-product-id"), 10);
         if (isProductInCart(productId)) {
-            button.textContent = "Product already in cart";
+            button.textContent = "Added to cart";
             button.disabled = true; // Optional: disable the button to prevent further clicks
         } else {
             button.removeEventListener("click", handleAddToCart);

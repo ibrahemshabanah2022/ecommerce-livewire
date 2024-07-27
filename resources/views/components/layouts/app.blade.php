@@ -23,6 +23,7 @@
         type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
+
 </head>
 
 <body>
