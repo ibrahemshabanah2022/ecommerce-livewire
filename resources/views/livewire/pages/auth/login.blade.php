@@ -22,6 +22,7 @@ new #[Layout('layouts.guest')] class extends Component {
         $this->redirectIntended(default: route('products_page', absolute: false), navigate: true);
     }
 }; ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div>
     <!-- Session Status -->
@@ -68,4 +69,13 @@ new #[Layout('layouts.guest')] class extends Component {
             </x-primary-button>
         </div>
     </form>
+    <div class="flex justify-center mt-4">
+        <a href="{{ route('google.redirect') }}" class="btn btn-primary flex items-center">
+            <img src="{{ asset('images/google-pic.png') }}" alt="Google Logo" class="me-2"
+                style="width: 24px; height: 24px;">
+            Login with Google
+        </a>
+    </div>
+
+
 </div>

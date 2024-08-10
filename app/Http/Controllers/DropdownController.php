@@ -64,6 +64,13 @@ class DropdownController extends Controller
      */
     public function saveUserOrderInfo(Request $request)
     {
+
+        if (!Auth::check()) {
+            // Redirect to login if not authenticated
+            return redirect(route('login'));
+        }
+
+
         // Validate the request first
         $validatedData = $request->validate([
             'country_id' => 'required|exists:countries,id',

@@ -27,11 +27,12 @@
 
                             </ul>
                         </div>
-                        <div class="top_bar_user">
-                            {{-- <div class="user_icon"><img src="images/user.svg" alt=""></div> --}}
+
+                        {{-- <div class="user_icon"><img src="images/user.svg" alt=""></div> --}}
 
 
-                            @auth
+                        @auth
+                            <div class="top_bar_user">
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -42,23 +43,25 @@
                                         Logout
                                     </a>
                                 </div>
+                            </div>
 
-
-                                {{-- <div><a wire:click="logout">{{ __('Log Out') }}</a></div> --}}
-                            @else
-                                <div><a href="{{ route('login') }}">Sign in</a></div>
-
-
+                            {{-- <div><a wire:click="logout">{{ __('Log Out') }}</a></div> --}}
+                        @else
+                            <div class="top_bar_user">
+                                <div class="user_icon"><img src="images/user.svg" alt=""></div>
                                 @if (Route::has('register'))
                                     <div><a href="{{ route('register') }}">Register</a></div>
                                 @endif
-                            @endauth
+                                <div><a href="{{ route('login') }}">Sign in</a></div>
+                            </div>
+
+                        @endauth
 
 
 
 
 
-                        </div>
+
                     </div>
                 </div>
             </div>
