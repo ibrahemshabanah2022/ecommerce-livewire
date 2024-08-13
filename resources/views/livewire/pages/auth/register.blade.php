@@ -13,18 +13,20 @@ new #[Layout('layouts.guest')] class extends Component {
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public $recapcha;
 
     /**
      * Handle an incoming registration request.
      */
-    public function register(): void
+    public function register(Request $request): void
     {
-        $validated = $this->validate([
+        $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $validated = $request->only(['name', 'email', 'password']);
         $validated['password'] = Hash::make($validated['password']);
 
         event(new Registered(($user = User::create($validated))));
@@ -33,7 +35,8 @@ new #[Layout('layouts.guest')] class extends Component {
 
         $this->redirect(route('products_page'), navigate: true);
     }
-}; ?>
+};
+?>
 
 <div>
     <form wire:submit="register">
@@ -73,6 +76,13 @@ new #[Layout('layouts.guest')] class extends Component {
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- reCAPTCHA -->
+        <div style="margin-top: 35px;" wire:ignore>
+            {!! htmlFormSnippet(['data-callback' => 'onCallback']) !!}
+
+
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 href="{{ route('login') }}" wire:navigate>
@@ -84,4 +94,10 @@ new #[Layout('layouts.guest')] class extends Component {
             </x-primary-button>
         </div>
     </form>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onCallback&render=explicit" async defer></script>
+    <script type="text/javascript">
+        var onCallback = function() {
+            @this.set('recapcha', grecapcha.getResponse())
+        }
+    </script>
 </div>
