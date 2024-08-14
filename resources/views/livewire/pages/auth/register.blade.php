@@ -18,15 +18,14 @@ new #[Layout('layouts.guest')] class extends Component {
     /**
      * Handle an incoming registration request.
      */
-    public function register(Request $request): void
+    public function register(): void
     {
-        $this->validate([
+        $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $validated = $request->only(['name', 'email', 'password']);
         $validated['password'] = Hash::make($validated['password']);
 
         event(new Registered(($user = User::create($validated))));
