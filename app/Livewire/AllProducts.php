@@ -1,14 +1,15 @@
 <?php
-
 namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Category;
 
 class AllProducts extends Component
 {
-    public $products;
+    use WithPagination;
+
     public $categories;
     public $editingProductId = null;
     public $name;
@@ -17,14 +18,12 @@ class AllProducts extends Component
 
     public function mount()
     {
-        $this->products = Product::with('category')->get();
         $this->categories = Category::all();
     }
 
     public function deleteProduct($productId)
     {
         Product::find($productId)->delete();
-        $this->products = Product::with('category')->get(); // Refresh the products list
         session()->flash('message', 'Product deleted successfully.');
     }
 
@@ -53,7 +52,6 @@ class AllProducts extends Component
         ]);
 
         $this->resetForm();
-        $this->products = Product::with('category')->get(); // Refresh the products list
         session()->flash('message', 'Product updated successfully.');
     }
 
@@ -67,6 +65,8 @@ class AllProducts extends Component
 
     public function render()
     {
-        return view('livewire.all-products');
+        return view('livewire.all-products', [
+            'products' => Product::with('category')->paginate(10)
+        ]);
     }
 }

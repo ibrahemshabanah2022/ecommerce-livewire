@@ -70,8 +70,14 @@
                 @endforeach
             </tbody>
         </table>
-
     </div>
+
+    <!-- Pagination Links -->
+    <div class="mt-4 d-flex justify-content-center">
+        {{ $products->links('pagination::bootstrap-4') }}
+    </div>
+
+
     @if (session()->has('error'))
         <div style="color: red;">
             {{ session('error') }}
