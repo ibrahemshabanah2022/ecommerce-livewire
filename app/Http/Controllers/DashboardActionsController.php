@@ -19,6 +19,9 @@ public function addProduct(){
 
     return view('addproduct');
 }
+public function displayAllProducts(){
 
+    return view('displayAllProducts');
+}
 
 }

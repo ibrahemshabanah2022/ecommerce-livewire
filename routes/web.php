@@ -69,6 +69,7 @@ Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::clas
 Route::get('/add-category', [DashboardActionsController::class, 'addCategory'])->name('add-category');
 Route::get('/display-categories', [DashboardActionsController::class, 'displayAllCategories'])->name('display-categories');
 Route::get('/add-product', [DashboardActionsController::class, 'addProduct'])->name('add-product');
+Route::get('/display-products', [DashboardActionsController::class, 'displayAllProducts'])->name('display-products');
 
 
 require __DIR__ . '/auth.php';
