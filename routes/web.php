@@ -2,6 +2,7 @@
 
 use App\Livewire\Cart;
 use App\Livewire\Products;
+use App\Livewire\AddCategory;
 use App\Livewire\ProductSearch;
 use App\Livewire\SearchResults;
 use App\Livewire\WishlistProducts;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\subnitcheckoutController;
+use App\Http\Controllers\DashboardActionsController;
 
 // Route::view('/', 'welcome');
 
@@ -63,4 +65,8 @@ Route::delete('/wishlist/{product}', [WishlistProducts::class, 'destroy'])->name
 
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
+
+Route::get('/add-category', [DashboardActionsController::class, 'addCategory'])->name('add-category');
+
+
 require __DIR__ . '/auth.php';
