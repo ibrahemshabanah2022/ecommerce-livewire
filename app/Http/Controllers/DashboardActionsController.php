@@ -15,4 +15,10 @@ public function displayAllCategories(){
     return view('displayAllCategories');
 }
 
+public function addProduct(){
+
+    return view('addproduct');
+}
+
+
 }
