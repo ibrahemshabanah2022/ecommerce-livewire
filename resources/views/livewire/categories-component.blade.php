@@ -1,12 +1,3 @@
-{{-- <div>
-    <h1>All Categories</h1>
-    <ul>
-        @foreach ($categories as $category)
-            <li>{{ $category->name }}</li>
-        @endforeach
-    </ul>
-</div> --}}
-
 <div class="card">
     <h5 class="card-header">All Categories</h5>
     <div class="table-responsive text-nowrap">
@@ -14,38 +5,58 @@
             <thead>
                 <tr>
                     <th>Category Name</th>
-
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
                 @foreach ($categories as $category)
                     <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $category->name }}</strong>
-                        </td>
-
                         <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                    data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="bx bx-edit-alt me-1"></i>
-                                        Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"
-                                        wire:click="deleteCategory({{ $category->id }})"
-                                        onclick="return confirm('Are you sure you want to delete this category?')"><i
-                                            class="bx bx-trash me-1"></i>
-                                        Delete</a>
+                            <i class="fab fa-angular fa-lg text-danger me-3"></i>
+                            <strong>{{ $category->name }}</strong>
+                        </td>
+                        <td>
+
+                            <button wire:click="deleteCategory({{ $category->id }})"
+                                onclick="return confirm('Are you sure you want to delete this category?')" type="button"
+                                class="btn btn-danger" aria-haspopup="true" aria-expanded="false">
+                                Delete
+                            </button>
+                            <button wire:click="startEdit({{ $category->id }})" type="button" class="btn btn-primary"
+                                aria-haspopup="true" aria-expanded="false">
+                                Edit
+                            </button>
+
+                        </td>
+                        <td>
+                            @if ($editingCategoryId === $category->id)
+                                <div>
+                                    <form wire:submit.prevent="saveCategory">
+                                        <input type="text" wire:model="name" placeholder="Category Name"
+                                            class="form-control">
+                                        @error('name')
+                                            <span class="error" style="color: red;">{{ $message }}</span>
+                                        @enderror
+                                        <button type="submit" class="btn btn-icon btn-primary">
+                                            OK
+                                        </button>
+
+
+                                        <button type="button" class="btn btn-icon btn-danger" wire:click="resetForm">
+                                            x
+                                        </button>
+                                    </form>
                                 </div>
-                            </div>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
     </div>
+    @if (session()->has('error'))
+        <div style="color: red;">
+            {{ session('error') }}
+        </div>
+    @endif
 </div>
