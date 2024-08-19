@@ -23,5 +23,9 @@ public function displayAllProducts(){
 
     return view('displayAllProducts');
 }
+public function displayAllUsers(){
+
+    return view('displayAllUsers');
+}
 
 }

@@ -70,6 +70,7 @@ Route::get('/add-category', [DashboardActionsController::class, 'addCategory'])-
 Route::get('/display-categories', [DashboardActionsController::class, 'displayAllCategories'])->name('display-categories');
 Route::get('/add-product', [DashboardActionsController::class, 'addProduct'])->name('add-product');
 Route::get('/display-products', [DashboardActionsController::class, 'displayAllProducts'])->name('display-products');
+Route::get('/display-users', [DashboardActionsController::class, 'displayAllUsers'])->name('display-users');
 
 
 require __DIR__ . '/auth.php';
