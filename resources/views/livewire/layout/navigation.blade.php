@@ -1,6 +1,6 @@
 <div>
 
-    <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme ">
         <div class="app-brand demo">
             <a href="index.html" class="app-brand-link">
                 <span class="app-brand-logo demo">
@@ -60,7 +60,7 @@
         <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-                <a href="{{ route('dashboard') }}" class="menu-link">
+                <a href="{{ route('dashboard') }}" class="menu-link" wire:navigate>
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Dashboard</div>
                 </a>
@@ -78,10 +78,40 @@
                         <div data-i18n="Without menu">Add New Category</div>
                     </a></span>
             </li>
-
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text"><a href="{{ route('display-categories') }}" class="menu-link"
+                        wire:navigate>
+                        <div data-i18n="Without menu">All Categories</div>
+                    </a></span>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text"><a href="{{ route('display-categories') }}" class="menu-link"
+                        wire:navigate>
+                        <div data-i18n="Without menu">Add New Product</div>
+                    </a></span>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text"><a href="{{ route('display-categories') }}" class="menu-link"
+                        wire:navigate>
+                        <div data-i18n="Without menu">All Products</div>
+                    </a></span>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text"><a href="{{ route('display-categories') }}" class="menu-link"
+                        wire:navigate>
+                        <div data-i18n="Without menu">All Users</div>
+                    </a></span>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text"><a href="{{ route('display-categories') }}" class="menu-link"
+                        wire:navigate>
+                        <div data-i18n="Without menu">All Orders</div>
+                    </a></span>
+            </li>
 
 
 
         </ul>
     </aside>
+
 </div>

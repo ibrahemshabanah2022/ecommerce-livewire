@@ -65,8 +65,9 @@ Route::delete('/wishlist/{product}', [WishlistProducts::class, 'destroy'])->name
 
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
-
+// -------------------dashboard---------------
 Route::get('/add-category', [DashboardActionsController::class, 'addCategory'])->name('add-category');
+Route::get('/display-categories', [DashboardActionsController::class, 'displayAllCategories'])->name('display-categories');
 
 
 require __DIR__ . '/auth.php';

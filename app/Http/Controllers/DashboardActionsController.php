@@ -10,4 +10,9 @@ public function addCategory(){
 
     return view('addcategory');
 }
+public function displayAllCategories(){
+
+    return view('displayAllCategories');
+}
+
 }
