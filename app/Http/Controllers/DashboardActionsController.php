@@ -27,5 +27,9 @@ public function displayAllUsers(){
 
     return view('displayAllUsers');
 }
+public function displayAllOrders(){
+
+    return view('displayAllOrders');
+}
 
 }

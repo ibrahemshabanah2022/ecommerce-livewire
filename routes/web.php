@@ -71,6 +71,7 @@ Route::get('/display-categories', [DashboardActionsController::class, 'displayAl
 Route::get('/add-product', [DashboardActionsController::class, 'addProduct'])->name('add-product');
 Route::get('/display-products', [DashboardActionsController::class, 'displayAllProducts'])->name('display-products');
 Route::get('/display-users', [DashboardActionsController::class, 'displayAllUsers'])->name('display-users');
+Route::get('/display-orders', [DashboardActionsController::class, 'displayAllOrders'])->name('display-orders');
 
 
 require __DIR__ . '/auth.php';

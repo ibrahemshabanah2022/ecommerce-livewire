@@ -101,8 +101,7 @@
                     </a></span>
             </li>
             <li class="menu-header small text-uppercase">
-                <span class="menu-header-text"><a href="{{ route('display-categories') }}" class="menu-link"
-                        wire:navigate>
+                <span class="menu-header-text"><a href="{{ route('display-orders') }}" class="menu-link" wire:navigate>
                         <div data-i18n="Without menu">All Orders</div>
                     </a></span>
             </li>
