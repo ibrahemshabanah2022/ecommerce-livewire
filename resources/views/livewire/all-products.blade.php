@@ -7,7 +7,10 @@
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Category</th>
+                    <th>Status</th>
+
                     <th>Actions</th>
+
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
@@ -23,14 +26,27 @@
                             {{ $product->category->name }}
                         </td>
                         <td>
-                            <button wire:click="deleteProduct({{ $product->id }})"
-                                onclick="return confirm('Are you sure you want to delete this product?')" type="button"
-                                class="btn btn-danger">
-                                Delete
-                            </button>
-                            <button wire:click="startEdit({{ $product->id }})" type="button" class="btn btn-primary">
-                                Edit
-                            </button>
+                            @if ($product->trashed())
+                                Deleted
+                            @endif
+
+                        </td>
+                        <td>
+
+                            @if ($product->trashed())
+                                <button class="btn btn-success"
+                                    wire:click="restoreProduct({{ $product->id }})">Restore</button>
+                            @else
+                                <button wire:click="deleteProduct({{ $product->id }})"
+                                    onclick="return confirm('Are you sure you want to delete this product?')"
+                                    type="button" class="btn btn-danger">
+                                    Delete
+                                </button>
+                                <button wire:click="startEdit({{ $product->id }})" type="button"
+                                    class="btn btn-primary">
+                                    Edit
+                                </button>
+                            @endif
                         </td>
                         <td>
                             @if ($editingProductId === $product->id)

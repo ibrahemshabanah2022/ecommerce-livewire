@@ -27,6 +27,17 @@ class AllProducts extends Component
         session()->flash('message', 'Product deleted successfully.');
     }
 
+    public function restoreProduct($productId)
+    {
+        $product = Product::withTrashed()->find($productId);
+        if ($product) {
+            $product->restore();
+            session()->flash('message', 'Product restored successfully.');
+        } else {
+            session()->flash('error', 'Product not found.');
+        }
+    }
+
     public function startEdit($productId)
     {
         $product = Product::find($productId);
@@ -66,7 +77,7 @@ class AllProducts extends Component
     public function render()
     {
         return view('livewire.all-products', [
-            'products' => Product::with('category')->paginate(10)
+            'products' => Product::with('category')->withTrashed()->paginate(10)
         ]);
     }
 }
