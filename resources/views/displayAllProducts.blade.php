@@ -3,7 +3,7 @@
         <div class="layout-container">
             <livewire:layout.navigation />
 
-            <div class="col-md-6 m-3">
+            <div class="m-5 p-5">
                 <div class="card mb-4">
                     <livewire:all-products />
                 </div>

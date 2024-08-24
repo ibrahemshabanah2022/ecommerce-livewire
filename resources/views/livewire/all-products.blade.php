@@ -27,8 +27,9 @@
                         </td>
                         <td>
                             @if ($product->trashed())
-                                Deleted
+                                <span style="color: red;">Deleted</span>
                             @endif
+
 
                         </td>
                         <td>
