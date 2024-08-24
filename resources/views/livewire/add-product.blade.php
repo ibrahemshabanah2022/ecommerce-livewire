@@ -49,6 +49,13 @@
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
+        <div>
+            <label for="image">Product Image (optional)</label>
+            <input type="file" id="image" wire:model="image">
+            @error('image')
+                <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
 
         <button type="submit" class="btn btn-primary">Add Product</button>
     </form>

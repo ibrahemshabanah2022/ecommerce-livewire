@@ -105,7 +105,20 @@
                                         <div class="product_border"></div>
                                         <div
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="images/featured_2.png" alt="">
+                                            @if ($product->images->isNotEmpty())
+                                                @php
+                                                    $imagePath = $product->images->first()->path;
+                                                @endphp
+                                                <div
+                                                    class="product_image d-flex flex-column align-items-center justify-content-center">
+                                                    <img src="{{ asset('storage/' . $imagePath) }}"
+                                                        alt="{{ $product->name }}" class="img-fluid">
+                                                </div>
+                                            @else
+                                                <img src="{{ asset('path/to/default/image.jpg') }}" alt="Default Image"
+                                                    class="img-fluid">
+                                            @endif
+
                                         </div>
                                         <div class="product_content">
                                             <div class="product_price">${{ $product->price }}</div>
