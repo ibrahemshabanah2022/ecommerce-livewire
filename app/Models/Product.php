@@ -28,4 +28,8 @@ class Product extends Model
     {
         return $this->hasMany(Wishlist::class);
     }
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
 }
