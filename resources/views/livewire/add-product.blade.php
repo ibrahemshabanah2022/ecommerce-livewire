@@ -29,6 +29,13 @@
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
+        <div>
+            <label for="in_stock">In Stock</label>
+            <input class="form-label" id="in_stock" type="number" wire:model="in_stock">
+            @error('in_stock')
+                <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="mb-3">
             <label for="category_id" class="form-label">Category</label>
