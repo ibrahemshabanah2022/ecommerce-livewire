@@ -129,7 +129,31 @@ class CheckoutController extends Controller
 
         $cartId = $cart->id;
         // dd($cartId);
+
+         // Decrease the quantity in the products table or remove the product
+         $cartItems = $cart->cartItems;
+
+         // Decrease the quantity in the products table or remove the product
+         foreach ($cartItems as $cartItem) {
+             $product = Product::find($cartItem->product_id);
+             if ($product) {
+                 // Decrease the in_stock quantity
+                 $product->in_stock -= $cartItem->quantity;
+     
+                 // Check if in_stock is less than or equal to 1
+                 if ($product->in_stock <= 1) {
+                     // Remove the product from the products table
+                     $product->delete();
+                 } else {
+                     // Save the updated in_stock value
+                     $product->save();
+                 }
+                }}
+
+
         $cart->cartItems()->where('cart_id', $cartId)->delete();
+
+
 
 
         Cookie::queue(Cookie::forget('cart'));
