@@ -51,7 +51,15 @@
                                                             <tbody>
                                                                 @foreach ($order->orderItems as $item)
                                                                     <tr>
-                                                                        <td>{{ $item->product->name }}</td>
+                                                                        <td>
+                                                                            @if ($item->product)
+                                                                                {{ $item->product->name }}
+                                                                            @else
+                                                                                <em>Product not available</em>
+                                                                            @endif
+
+
+                                                                        </td>
                                                                         <td>{{ $item->quantity }}</td>
                                                                         <td>${{ $item->price }}</td>
                                                                         <td>${{ number_format($item->quantity * $item->price, 2) }}
