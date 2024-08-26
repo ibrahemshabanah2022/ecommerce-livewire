@@ -139,15 +139,13 @@ class CheckoutController extends Controller
              if ($product) {
                  // Decrease the in_stock quantity
                  $product->in_stock -= $cartItem->quantity;
-     
+                 $product->save();
+
                  // Check if in_stock is less than or equal to 1
-                 if ($product->in_stock <= 1) {
-                     // Remove the product from the products table
+                 if ($product->in_stock == 0) {
+                    // Remove the product from the products table
                      $product->delete();
-                 } else {
-                     // Save the updated in_stock value
-                     $product->save();
-                 }
+                 } 
                 }}
 
 

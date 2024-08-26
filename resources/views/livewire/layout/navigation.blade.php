@@ -58,6 +58,11 @@
         <div class="menu-inner-shadow"></div>
 
         <ul class="menu-inner py-1">
+            <li class="menu-item active">
+                <a href="{{ route('products_page') }}" class="menu-link" wire:navigate>
+                    <div data-i18n="Analytics">Visit Site</div>
+                </a>
+            </li>
             <!-- Dashboard -->
             <li class="menu-item active">
                 <a href="{{ route('dashboard') }}" class="menu-link" wire:navigate>
@@ -65,6 +70,7 @@
                     <div data-i18n="Analytics">Dashboard</div>
                 </a>
             </li>
+
 
 
             {{-- <x-dropdown-link :href="route('profile')" wire:navigate>

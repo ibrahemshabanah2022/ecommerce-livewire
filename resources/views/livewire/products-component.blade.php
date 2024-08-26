@@ -115,7 +115,7 @@
                                                         alt="{{ $product->name }}" class="img-fluid">
                                                 </div>
                                             @else
-                                                <img src="{{ asset('path/to/default/image.jpg') }}" alt="Default Image"
+                                                <img src="{{ asset('storage/images/default.png') }}" alt="Default Image"
                                                     class="img-fluid">
                                             @endif
 

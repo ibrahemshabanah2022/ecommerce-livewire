@@ -7,6 +7,8 @@
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Category</th>
+                    <th>In Stock</th>
+
                     <th>Status</th>
 
                     <th>Actions</th>
@@ -24,6 +26,9 @@
                         </td>
                         <td>
                             {{ $product->category->name }}
+                        </td>
+                        <td>
+                            {{ $product->in_stock }}
                         </td>
                         <td>
                             @if ($product->trashed())
