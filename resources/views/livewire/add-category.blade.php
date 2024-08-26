@@ -1,20 +1,27 @@
 <div>
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
 
     <form wire:submit.prevent="addCategory">
-        @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
-
-        <div class="mb-3">
-            <label for="name" class="form-label m-2">Category Name</label>
-            <input type="text" wire:model="name" class="form-control " id="name">
-            @error('name')
+        <div class="form-group">
+            <label for="categoryName">Category Name</label>
+            <input type="text" id="categoryName" wire:model.defer="categoryName" class="form-control">
+            @error('categoryName')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Add Category</button>
+        <div class="form-group">
+            <label for="attributeName">Attribute Name</label>
+            <input type="text" id="attributeName" wire:model.defer="attributeName" class="form-control">
+            @error('attributeName')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Category and Attribute</button>
     </form>
 </div>

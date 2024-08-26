@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Attribute extends Model
 {
+    protected $fillable = [
+        'name',
+    ];
     use HasFactory;
     public function categories()
     {

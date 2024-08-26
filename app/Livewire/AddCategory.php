@@ -3,30 +3,42 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Category; // Assuming you have a Category model
+use App\Models\Category;
+use App\Models\Attribute;
 use Illuminate\Validation\Rule;
 
 class AddCategory extends Component
 {
-    public $name;
+    public $categoryName;
+    public $attributeName;
 
     protected $rules = [
-        'name' => 'required|string|max:255|unique:categories,name',
+        'categoryName' => 'required|string|max:255|unique:categories,name',
+        'attributeName' => 'required|string|max:255|unique:attributes,name',
     ];
 
     public function addCategory()
     {
         $this->validate();
 
-        Category::create([
-            'name' => $this->name,
+        // Create the category
+        $category = Category::create([
+            'name' => $this->categoryName,
         ]);
 
-        // Clear the input field
-        $this->reset('name');
+        // Create the attribute
+        $attribute = Attribute::create([
+            'name' => $this->attributeName,
+        ]);
+
+        // Attach the attribute to the newly created category
+        $category->attributes()->attach($attribute->id);
+
+        // Clear the input fields
+        $this->reset(['categoryName', 'attributeName']);
 
         // Optionally, you can add a flash message or emit an event
-        session()->flash('message', 'Category added successfully!');
+        session()->flash('message', 'Category and attribute added successfully!');
     }
 
     public function render()
