@@ -62,6 +62,8 @@
                                             class="form-control">
                                         <input type="text" wire:model="price" placeholder="Price"
                                             class="form-control mt-2">
+                                        <input type="text" wire:model="in_stock" placeholder="in_stock"
+                                            class="form-control mt-2">
                                         <select wire:model="category_id" class="form-control mt-2">
                                             <option value="">Select Category</option>
                                             @foreach ($categories as $category)
@@ -72,6 +74,9 @@
                                             <span class="error" style="color: red;">{{ $message }}</span>
                                         @enderror
                                         @error('price')
+                                            <span class="error" style="color: red;">{{ $message }}</span>
+                                        @enderror
+                                        @error('in_stock')
                                             <span class="error" style="color: red;">{{ $message }}</span>
                                         @enderror
                                         @error('category_id')

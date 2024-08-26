@@ -14,6 +14,8 @@ class AllProducts extends Component
     public $editingProductId = null;
     public $name;
     public $price;
+    public $in_stock;
+
     public $category_id;
 
     public function mount()
@@ -44,6 +46,9 @@ class AllProducts extends Component
         $this->editingProductId = $productId;
         $this->name = $product->name;
         $this->price = $product->price;
+        $this->in_stock = $product->in_stock;
+
+        
         $this->category_id = $product->category_id;
     }
 
@@ -52,6 +57,8 @@ class AllProducts extends Component
         $this->validate([
             'name' => 'required|string|max:100',
             'price' => 'required|numeric|min:0',
+            'in_stock' => 'required|numeric|min:0',
+
             'category_id' => 'required|exists:categories,id',
         ]);
 
@@ -59,6 +66,8 @@ class AllProducts extends Component
         $product->update([
             'name' => $this->name,
             'price' => $this->price,
+            'in_stock' => $this->in_stock,
+
             'category_id' => $this->category_id,
         ]);
 
@@ -71,6 +80,8 @@ class AllProducts extends Component
         $this->editingProductId = null;
         $this->name = '';
         $this->price = '';
+        $this->in_stock = '';
+
         $this->category_id = '';
     }
 
