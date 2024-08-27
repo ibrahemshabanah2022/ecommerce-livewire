@@ -1,5 +1,8 @@
 <div class="card">
     <h5 class="card-header">All Products</h5>
+
+    <span class="card-header" style="color: red;">Trashed Products</span>
+
     <div class="table-responsive text-nowrap">
         <table class="table">
             <thead>

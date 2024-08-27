@@ -5,17 +5,27 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Attribute;
-use Illuminate\Validation\Rule;
 
 class AddCategory extends Component
 {
     public $categoryName;
-    public $attributeName;
+    public $attributeNames = ['']; // Array to store multiple attribute names
 
     protected $rules = [
         'categoryName' => 'required|string|max:255|unique:categories,name',
-        'attributeName' => 'required|string|max:255|unique:attributes,name',
+        'attributeNames.*' => 'string|max:255|unique:attributes,name',
     ];
+
+    public function addAttributeInput()
+    {
+        $this->attributeNames[] = '';
+    }
+
+    public function removeAttributeInput($index)
+    {
+        unset($this->attributeNames[$index]);
+        $this->attributeNames = array_values($this->attributeNames); // Re-index array
+    }
 
     public function addCategory()
     {
@@ -26,19 +36,20 @@ class AddCategory extends Component
             'name' => $this->categoryName,
         ]);
 
-        // Create the attribute
-        $attribute = Attribute::create([
-            'name' => $this->attributeName,
-        ]);
+        // Create and attach attributes
+        foreach ($this->attributeNames as $attributeName) {
+            $attribute = Attribute::create([
+                'name' => $attributeName,
+            ]);
 
-        // Attach the attribute to the newly created category
-        $category->attributes()->attach($attribute->id);
+            $category->attributes()->attach($attribute->id);
+        }
 
         // Clear the input fields
-        $this->reset(['categoryName', 'attributeName']);
+        $this->reset(['categoryName', 'attributeNames']);
+        $this->attributeNames = ['']; // Reset to one empty input
 
-        // Optionally, you can add a flash message or emit an event
-        session()->flash('message', 'Category and attribute added successfully!');
+        session()->flash('message', 'Category and attributes added successfully!');
     }
 
     public function render()
