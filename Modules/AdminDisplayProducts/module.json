@@ -1,0 +1,11 @@
+{
+    "name": "AdminDisplayProducts",
+    "alias": "admindisplayproducts",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AdminDisplayProducts\\Providers\\AdminDisplayProductsServiceProvider"
+    ],
+    "files": []
+}

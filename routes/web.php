@@ -74,4 +74,8 @@ Route::get('/display-users', [DashboardActionsController::class, 'displayAllUser
 Route::get('/display-orders', [DashboardActionsController::class, 'displayAllOrders'])->name('display-orders');
 
 
+Route::group(['module' => 'Blog', 'namespace' => 'Modules\Blog\Http\Controllers'], function() {
+    require module_path('Blog', 'Routes/web.php');
+});
+
 require __DIR__ . '/auth.php';
