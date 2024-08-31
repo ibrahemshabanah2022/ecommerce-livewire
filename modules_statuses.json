@@ -1,4 +1,5 @@
 {
     "Blog": true,
-    "AdminDisplayProducts": true
+    "AdminDisplayProducts": true,
+    "Core": true
 }

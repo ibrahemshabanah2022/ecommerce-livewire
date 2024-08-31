@@ -1,20 +1,20 @@
 <?php
 
-namespace Modules\AdminDisplayProducts\Http\Controllers;
+namespace Modules\Core\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class AdminDisplayProductsController extends Controller
+class CoreController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admindisplayproducts::index');
+        return view('core::index');
     }
 
     /**
@@ -22,7 +22,7 @@ class AdminDisplayProductsController extends Controller
      */
     public function create()
     {
-        return view('admindisplayproducts::create');
+        return view('core::create');
     }
 
     /**
@@ -38,7 +38,7 @@ class AdminDisplayProductsController extends Controller
      */
     public function show($id)
     {
-        return view('admindisplayproducts::show');
+        return view('core::show');
     }
 
     /**
@@ -46,7 +46,7 @@ class AdminDisplayProductsController extends Controller
      */
     public function edit($id)
     {
-        return view('admindisplayproducts::edit');
+        return view('core::edit');
     }
 
     /**
@@ -64,4 +64,6 @@ class AdminDisplayProductsController extends Controller
     {
         //
     }
+
+   
 }

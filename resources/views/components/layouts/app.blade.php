@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    @livewire('navbar')
+    {{-- @livewire('navbar') --}}
 
     {{ $slot }}
 

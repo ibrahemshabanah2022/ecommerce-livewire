@@ -10,6 +10,7 @@
 </style> --}}
 
 <div>
+    @livewire('navbar')
     <div class="super_container">
 
         <!-- Header -->

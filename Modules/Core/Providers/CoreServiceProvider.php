@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\AdminDisplayProducts\Providers;
+namespace Modules\Core\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class AdminDisplayProductsServiceProvider extends ServiceProvider
+class CoreServiceProvider extends ServiceProvider
 {
-    protected string $moduleName = 'AdminDisplayProducts';
+    protected string $moduleName = 'Core';
 
-    protected string $moduleNameLower = 'admindisplayproducts';
+    protected string $moduleNameLower = 'core';
 
     /**
      * Boot the application events.

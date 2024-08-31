@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "livewire/volt": "^1.0",
+        "mhmiton/laravel-modules-livewire": "^3.0",
         "nwidart/laravel-modules": "^11.0",
         "stripe/stripe-php": "^15.3"
     },

@@ -1,7 +1,10 @@
 <?php
 
+use Modules\Core\Livewire\Products;
 use Illuminate\Support\Facades\Route;
-use Modules\AdminDisplayProducts\Http\Controllers\AdminDisplayProductsController;
+use Modules\Core\app\Http\Controllers\CoreController;
+use Modules\Core\Livewire\AdminProducts\AdminProductsPage;
+use Modules\Core\app\Http\Controllers\DashboardActionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +18,11 @@ use Modules\AdminDisplayProducts\Http\Controllers\AdminDisplayProductsController
 */
 
 Route::group([], function () {
-    Route::resource('admindisplayproducts', AdminDisplayProductsController::class)->names('admindisplayproducts');
+    Route::resource('core', CoreController::class)->names('core');
+
 });
+
+// Route::get('AdminProductsPage', AdminProductsPage::class);
+Route::get('AdminProductsPage', Products::class);
+
+

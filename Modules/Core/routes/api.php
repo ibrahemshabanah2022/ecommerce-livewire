@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\AdminDisplayProducts\Http\Controllers\AdminDisplayProductsController;
+use Modules\Core\Http\Controllers\CoreController;
 
 /*
  *--------------------------------------------------------------------------
@@ -15,5 +15,5 @@ use Modules\AdminDisplayProducts\Http\Controllers\AdminDisplayProductsController
 */
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('admindisplayproducts', AdminDisplayProductsController::class)->names('admindisplayproducts');
+    Route::apiResource('core', CoreController::class)->names('core');
 });

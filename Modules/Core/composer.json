@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/admindisplayproducts",
+    "name": "nwidart/core",
     "description": "",
     "authors": [
         {
@@ -17,14 +17,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\AdminDisplayProducts\\": "app/",
-            "Modules\\AdminDisplayProducts\\Database\\Factories\\": "database/factories/",
-            "Modules\\AdminDisplayProducts\\Database\\Seeders\\": "database/seeders/"
+            "Modules\\Core\\": "app/",
+            "Modules\\Core\\Database\\Factories\\": "database/factories/",
+            "Modules\\Core\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Modules\\AdminDisplayProducts\\Tests\\": "tests/"
+            "Modules\\Core\\Tests\\": "tests/"
         }
     }
 }
