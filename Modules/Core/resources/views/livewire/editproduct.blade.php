@@ -5,7 +5,7 @@
         <div class="layout-container">
             <livewire:layout.navigation />
 
-            <div class="table-responsive text-nowrap card m-5 p-5">
+            <div class="table-responsive  card m-5 p-5">
                 @if (session()->has('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\app\Livewire\Products;
 use Modules\Core\app\Livewire\Editproduct;
+use Modules\Core\app\Livewire\Trashedproducts;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,7 @@ class CoreServiceProvider extends ServiceProvider
         Livewire::component('core.deleteproduct', \Modules\Core\app\Livewire\Deleteproduct::class);
         Livewire::component('core.products', Products::class);
         Livewire::component('core.Editproduct', Editproduct::class);
+        Livewire::component('core.trashedproducts', Trashedproducts::class);
 
 
     }

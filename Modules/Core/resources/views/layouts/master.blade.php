@@ -14,8 +14,19 @@
     <meta name="author" content="{{ $author ?? '' }}">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap4/bootstrap.min.css') }}">
+    <link href="{{ asset('plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-ui-1.12.1.custom/jquery-ui.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap4/bootstrap.min.css') }}">
+    <link href="{{ asset('plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet"
+        type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
 
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-core', 'resources/assets/sass/app.scss') }} --}}

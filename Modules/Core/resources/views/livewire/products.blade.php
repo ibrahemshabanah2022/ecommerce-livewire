@@ -4,11 +4,16 @@
             <livewire:layout.navigation />
 
             <div class="m-4 p-4">
-                <div class="card mb-4">
-                    <div class="card">
-                        <h5 class="card-header">All Products</h5>
+                <h5 class="card-header">All Products</h5>
 
-                        <span class="card-header" style="color: red;">Trashed Products</span>
+                <div class="card mb-4">
+
+                    <div class="card">
+
+                        <a wire:navigate href="{{ route('trashed-products') }}" class="card-header"
+                            style="color: red; text-decoration: none;">
+                            Trashed Products
+                        </a>
 
                         <div class="table-responsive text-nowrap">
                             <table class="table">
@@ -19,7 +24,6 @@
                                         <th>Category</th>
                                         <th>In Stock</th>
 
-                                        <th>Status</th>
 
                                         <th>Actions</th>
 
@@ -40,33 +44,24 @@
                                             <td>
                                                 {{ $product->in_stock }}
                                             </td>
-                                            <td>
-                                                @if ($product->trashed())
-                                                    <span style="color: red;">Deleted</span>
-                                                @endif
 
-
-                                            </td>
                                             <td>
 
-                                                @if ($product->trashed())
-                                                    <button class="btn btn-success"
-                                                        wire:click="restoreProduct({{ $product->id }})">Restore</button>
-                                                @else
-                                                    {{-- <button wire:click="deleteProduct({{ $product->id }})"
-                                                        onclick="return confirm('Are you sure you want to delete this product?')"
-                                                        type="button" class="btn btn-danger">
-                                                        Delete
-                                                    </button> --}}
-                                                    <div class="d-flex align-items-center">
-                                                        <livewire:core.deleteproduct :product-id="$product->id" />
-                                                        <a wire:navigate
-                                                            href="{{ route('edit.product', ['productId' => $product->id]) }}"
-                                                            class="btn btn-primary ml-2">
-                                                            Edit
-                                                        </a>
-                                                    </div>
-                                                @endif
+
+                                                {{-- <button wire:click="deleteProduct({{ $product->id }})"
+                                                    onclick="return confirm('Are you sure you want to delete this product?')"
+                                                    type="button" class="btn btn-danger">
+                                                    Delete
+                                                </button> --}}
+                                                <div class="d-flex align-items-center">
+
+                                                    <livewire:core.deleteproduct :product-id="$product->id" />
+
+                                                    <a href="{{ route('edit.product', ['productId' => $product->id]) }}"
+                                                        class="btn btn-primary ml-2">
+                                                        Edit
+                                                    </a>
+                                                </div>
                                             </td>
                                             <td>
                                                 @if ($editingProductId === $product->id)
