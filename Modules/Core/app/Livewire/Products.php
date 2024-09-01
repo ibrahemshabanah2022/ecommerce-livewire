@@ -51,17 +51,11 @@ class Products extends Component
         }
     }
 
-    public function startEdit($productId)
-    {
-        $product = Product::find($productId);
-        $this->editingProductId = $productId;
-        $this->name = $product->name;
-        $this->price = $product->price;
-        $this->in_stock = $product->in_stock;
+public function startEdit($productId)
+{
+    return redirect()->route('edit.product', ['productId' => $productId]);
+}
 
-        
-        $this->category_id = $product->category_id;
-    }
 
     public function saveProduct()
     {

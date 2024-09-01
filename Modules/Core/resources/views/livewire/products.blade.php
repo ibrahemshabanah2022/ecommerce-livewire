@@ -3,7 +3,7 @@
         <div class="layout-container">
             <livewire:layout.navigation />
 
-            <div class="m-5 p-5">
+            <div class="m-4 p-4">
                 <div class="card mb-4">
                     <div class="card">
                         <h5 class="card-header">All Products</h5>
@@ -58,12 +58,14 @@
                                                         type="button" class="btn btn-danger">
                                                         Delete
                                                     </button> --}}
-                                                    <livewire:core.deleteproduct :product-id="$product->id" />
-
-                                                    <button wire:click="startEdit({{ $product->id }})" type="button"
-                                                        class="btn btn-primary">
-                                                        Edit
-                                                    </button>
+                                                    <div class="d-flex align-items-center">
+                                                        <livewire:core.deleteproduct :product-id="$product->id" />
+                                                        <a wire:navigate
+                                                            href="{{ route('edit.product', ['productId' => $product->id]) }}"
+                                                            class="btn btn-primary ml-2">
+                                                            Edit
+                                                        </a>
+                                                    </div>
                                                 @endif
                                             </td>
                                             <td>

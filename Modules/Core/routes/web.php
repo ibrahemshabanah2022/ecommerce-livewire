@@ -1,7 +1,8 @@
 <?php
 
-use Modules\Core\app\Livewire\Products;
 use Illuminate\Support\Facades\Route;
+use Modules\Core\app\Livewire\Editproduct;
+use Modules\Core\app\Livewire\Products;
 use Modules\Core\app\Http\Controllers\CoreController;
 use Modules\Core\Livewire\AdminProducts\AdminProductsPage;
 use Modules\Core\app\Http\Controllers\DashboardActionController;
@@ -23,6 +24,8 @@ Route::group([], function () {
 });
 
 // Route::get('AdminProductsPage', AdminProductsPage::class);
-Route::get('AdminProductsPage', Products::class);
+Route::get('AdminProductsPage', Products::class)->name('AdminProductsPage');
 
+
+Route::get('/products/edit/{productId}', Editproduct::class)->name('edit.product');
 
