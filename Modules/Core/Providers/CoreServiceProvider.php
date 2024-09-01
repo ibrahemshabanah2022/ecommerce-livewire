@@ -2,8 +2,10 @@
 
 namespace Modules\Core\Providers;
 
+use Livewire\Livewire;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Core\app\Livewire\Products;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'database/migrations'));
+        Livewire::component('core.deleteproduct', \Modules\Core\app\Livewire\Deleteproduct::class);
+        Livewire::component('core.products', Products::class);
+
     }
 
     /**

@@ -19,6 +19,7 @@
 
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-core', 'resources/assets/sass/app.scss') }} --}}
+    @livewireStyles
 </head>
 
 <body>
@@ -26,4 +27,5 @@
 
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-core', 'resources/assets/js/app.js') }} --}}
+    @livewireScripts
 </body>

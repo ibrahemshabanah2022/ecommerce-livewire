@@ -1,6 +1,6 @@
 <?php
 
-use Modules\Core\Livewire\Products;
+use Modules\Core\app\Livewire\Products;
 use Illuminate\Support\Facades\Route;
 use Modules\Core\app\Http\Controllers\CoreController;
 use Modules\Core\Livewire\AdminProducts\AdminProductsPage;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Core\Livewire;
+namespace Modules\Core\app\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
@@ -28,10 +28,17 @@ class Products extends Component
     }
 
     public function deleteProduct($productId)
-    {
-        Product::find($productId)->delete();
-        session()->flash('message', 'Product deleted successfully.');
-    }
+{
+    // Delete the product from the database
+    Product::find($productId)->delete();
+
+    // Flash a success message
+    session()->flash('message', 'Product deleted successfully.');
+
+    // Update the products list on the screen
+    $this->render();
+}
+
 
     public function restoreProduct($productId)
     {

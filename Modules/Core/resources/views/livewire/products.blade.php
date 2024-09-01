@@ -53,11 +53,13 @@
                                                     <button class="btn btn-success"
                                                         wire:click="restoreProduct({{ $product->id }})">Restore</button>
                                                 @else
-                                                    <button wire:click="deleteProduct({{ $product->id }})"
+                                                    {{-- <button wire:click="deleteProduct({{ $product->id }})"
                                                         onclick="return confirm('Are you sure you want to delete this product?')"
                                                         type="button" class="btn btn-danger">
                                                         Delete
-                                                    </button>
+                                                    </button> --}}
+                                                    <livewire:core.deleteproduct :product-id="$product->id" />
+
                                                     <button wire:click="startEdit({{ $product->id }})" type="button"
                                                         class="btn btn-primary">
                                                         Edit
@@ -135,4 +137,5 @@
 
     </div>
     </div>
+
 </x-app-layout>
