@@ -5,6 +5,7 @@ use Modules\Core\app\Livewire\Products;
 use Modules\Core\app\Livewire\Editproduct;
 use Modules\Core\app\Livewire\Trashedproducts;
 use Modules\Core\app\Http\Controllers\CoreController;
+use Modules\Core\app\Livewire\Displayproductsdashboard;
 use Modules\Core\Livewire\AdminProducts\AdminProductsPage;
 use Modules\Core\app\Http\Controllers\DashboardActionController;
 
@@ -31,4 +32,5 @@ Route::get('AdminProductsPage', Products::class)->name('AdminProductsPage');
 Route::get('/products/edit/{productId}', Editproduct::class)->name('edit.product');
 
 Route::get('/trashed-products', Trashedproducts::class)->name('trashed-products');
+Route::get('Displayproductsdashboard', Displayproductsdashboard::class)->name('Displayproductsdashboard');
 

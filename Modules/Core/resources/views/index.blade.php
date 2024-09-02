@@ -1,7 +1,8 @@
-@extends('core::layouts.master')
-
-@section('content')
-    <h1>Hello World</h1>
-
-    <p>Module: {!! config('core.name') !!}</p>
-@endsection
+<x-app-layout>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <livewire:layout.navigation />
+            <livewire:core::displayproductsdashboard />
+        </div>
+    </div>
+</x-app-layout>

@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Core\app\Livewire\Products;
 use Modules\Core\app\Livewire\Editproduct;
 use Modules\Core\app\Livewire\Trashedproducts;
+use Modules\Core\app\Livewire\Displayproductsdashboard;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,10 @@ class CoreServiceProvider extends ServiceProvider
         Livewire::component('core.products', Products::class);
         Livewire::component('core.Editproduct', Editproduct::class);
         Livewire::component('core.trashedproducts', Trashedproducts::class);
+        // Livewire::component('core.Displayproductsdashboard', Displayproductsdashboard::class);
+
+        Livewire::component('core::displayproductsdashboard', Displayproductsdashboard::class);
+
 
 
     }
