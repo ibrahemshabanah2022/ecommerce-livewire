@@ -1,14 +1,3 @@
-{{-- <style>
-    .hover-container .btn-primary {
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-
-    .hover-container:hover .btn-primary {
-        opacity: 1;
-    }
-</style> --}}
-
 <div>
     @livewire('navbar')
     <div class="super_container">

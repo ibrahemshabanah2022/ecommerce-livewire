@@ -1,4 +1,6 @@
 <div class="super_container">
+    @livewire('navbar')
+
     <!-- Cart -->
     <div class="cart_section">
         <div class="container">
