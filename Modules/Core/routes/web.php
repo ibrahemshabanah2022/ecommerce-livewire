@@ -34,3 +34,4 @@ Route::get('/products/edit/{productId}', Editproduct::class)->name('edit.product
 Route::get('/trashed-products', Trashedproducts::class)->name('trashed-products');
 Route::get('Displayproductsdashboard', Displayproductsdashboard::class)->name('Displayproductsdashboard');
 
+Route::get('/trashed-products', [CoreController::class, 'TrashedProducts'])->name('trashed-products');

@@ -16,7 +16,10 @@ class CoreController extends Controller
     {
         return view('core::index');
     }
-
+    public function TrashedProducts()
+    {
+        return view('core::TrashedProducts');
+    }
     /**
      * Show the form for creating a new resource.
      */
