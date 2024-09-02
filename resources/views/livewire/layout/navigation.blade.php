@@ -96,7 +96,7 @@
                     </a></span>
             </li>
             <li class="menu-header small text-uppercase">
-                <span class="menu-header-text"><a href="{{ route('display-products') }}" class="menu-link"
+                <span class="menu-header-text"><a href="{{ route('core.index') }}" class="menu-link"
                         wire:navigate>
                         <div data-i18n="Without menu">All Products</div>
                     </a></span>
