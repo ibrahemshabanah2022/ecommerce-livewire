@@ -45,9 +45,8 @@
 
 
                                     <div class="d-flex align-items-center">
-                                        <button wire:click="deleteProduct({{ $product->id }})"
-                                            onclick="return confirm('Are you sure you want to delete this product?')"
-                                            type="button" class="btn btn-danger m-2">
+                                        <button wire:click="deleteProduct({{ $product->id }})" type="button"
+                                            class="btn btn-danger m-2">
                                             Delete
                                         </button>
                                         {{-- <livewire:core.deleteproduct :product-id="$product->id" /> --}}

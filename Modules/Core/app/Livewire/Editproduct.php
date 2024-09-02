@@ -47,7 +47,7 @@ class Editproduct extends Component
         session()->flash('success', 'Product updated successfully!');
 
         // Redirect to the product listing page
-        return redirect()->route('AdminProductsPage');
+        return redirect()->route('core.index');
     }
     public function render()
 {
